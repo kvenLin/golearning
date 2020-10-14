@@ -24,6 +24,21 @@ func (node *Node) Traverse() {
 	node.Right.Traverse()
 }
 
+func (node *Node) TraverseFunc(f func(node *Node)) {
+
+}
+
+func (node *Node) TraverseWithChannel() chan *Node {
+	out := make(chan *Node)
+	go func() {
+		node.TraverseFunc(func(node *Node) {
+			out <- node
+		})
+		close(out)
+	}()
+	return out
+}
+
 func CreateNode(value int) *Node {
 	return &Node{Value: value}
 }

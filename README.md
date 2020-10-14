@@ -39,3 +39,28 @@
 * 高阶函数
 * 函数 -> 闭包
 ![](image/20200818112858.jpg)
+### 资源管理
+* defer调用确保在函数结束时调用
+* 参数在defer语句时计算
+* defer列表为先进后出
+* 何时使用defer: 
+    * Open/Close
+    * Lock/Unlock
+    * printHeader/printFooter
+### goroutine
+* 协程 Coroutine
+    * 轻量级的"线程"
+    * **非抢占式**多任务处理, 由协程主动交出控制权
+    * 编译器/解释器/虚拟机层面的多任务
+    * 多个协会才能可以在一个或多个线程上运行
+* goroutine的定义:
+    * 任何函数只需要加上go就能送给调度器运行
+    * 不需要在调度时进行区分是否是异步函数
+    * 调度器在合适的点进行切换
+    * 使用-race来检测数据访问的冲突
+* goroutine可能切换的点:
+    * I/O,select
+    * channel
+    * 等待锁
+    * 函数调用(有时)
+    * runtime.Gosched()
